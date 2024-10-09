@@ -1,0 +1,169 @@
+<% layout('layout/boilerplate')%>
+<style>
+  * {
+    font-family: "Work Sans", sans-serif;
+  }
+
+  .listing-title {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 80px;
+  }
+
+  .title {
+    font-weight: 600;
+    font-size: 28px;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .property-info {
+    height: 800px;
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+  }
+
+  .property-images {
+    height: 50%;
+    flex: 1;
+    display: flex;
+  }
+
+  .property-images .col1 {
+    height: 100%;
+    flex: 1.5;
+    background-image: url("<%= listing.image.url[0] %>");
+    background-size: cover;
+    background-position: center;
+    margin-right: 8px;
+    border-radius: 10px;
+  }
+
+  .property-images .col2 {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .property-images .col2 .image-one {
+    height: 100%;
+    flex: 1;
+    background-image: url("<%= listing.image.url[1] %>");
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 8px;
+    border-radius: 10px;
+  }
+
+  .property-images .col2 .image-two {
+    height: 100%;
+    flex: 1;
+    background-image: url("<%= listing.image.url[2] %>");
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+  }
+
+  .property-description {
+    height: 30%;
+    position: relative;
+  }
+
+  .listing-desc {
+    font-size: x-large;
+    font-weight: 600;
+    width: 56%;
+  }
+
+  .listing-loc {
+    font-size: 20px;
+  }
+
+  .property-booking {
+    height: 130px;
+    width: 300px;
+    box-shadow: 1px 1px 10px black;
+    border-radius: 20px;
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .buy-btn {
+    border: none;
+    padding: 10px 30px;
+    border-radius: 10px;
+    background-color: rgb(255, 56, 92);
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    margin-top: 15px;
+  }
+
+  .rent-price {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 500;
+  }
+
+  .owner-info {
+    width: 50%;
+    border-top: 1px solid rgba(167, 164, 164, 0.576);
+    border-bottom: 1px solid rgba(167, 164, 164, 0.576);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .owner-name {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .owner-status {
+    margin: 0;
+    margin-top: 3px;
+    margin-bottom: 10px;
+  }
+
+  .owner-desc {
+    flex: 1;
+  }
+</style>
+
+<div class="listing-title">
+  <p class="title" style="margin-left: -32px"><%= listing.title%></p>
+</div>
+<div class="property-info">
+  <div class="property-images">
+    <div class="col1"></div>
+    <div class="col2">
+      <div class="image-one"></div>
+      <div class="image-two"></div>
+    </div>
+  </div>
+  <div class="property-description">
+    <p class="listing-desc"><%= listing.description %></p>
+    <p class="listing-loc"><%= listing.location %> , <%= listing.country %></p>
+    <div class="property-booking">
+      <p class="rent-price">
+        &#8377; <%= listing.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+        ",")%> / night
+      </p>
+      <button class="buy-btn">Rent Now</button>
+    </div>
+    <div class="owner-info">
+      <p class="owner-name">Hosted by Chaitanya</p>
+      <p class="owner-status">3 years hosting</p>
+    </div>
+  </div>
+</div>
