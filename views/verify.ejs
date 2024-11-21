@@ -1,0 +1,33 @@
+<% layout('layout/boilerplate')%>
+
+<style>
+  .varifyForm {
+    margin-top: 100px;
+  }
+</style>
+
+<div class="row varifyForm">
+  <h3 class="col-6 offset-3">verify email</h3>
+  <div class="col-6 offset-3">
+    <form
+      method="POST"
+      action="/verify-code"
+      class="needs-validation"
+      novalidate
+    >
+      <div class="mb-3">
+        <label for="varify" class="form-label">Enter Code</label>
+        <input
+          name="code"
+          id="varify"
+          placeholder="code"
+          type="text"
+          class="form-control"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <button class="btn btn-danger">Verify</button>
+    </form>
+  </div>
+</div>

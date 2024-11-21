@@ -1,0 +1,29 @@
+header {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  border-bottom: 1px solid rgb(209, 209, 209);
+  height: 4rem;
+}
+
+h1 {
+  margin: 0;
+}
+
+.brand {
+  margin-left: 25px;
+}
+
+header .login-signup {
+  margin-right: 25px;
+}
+
+header .login-signup a {
+  margin-left: 15px;
+  font-size: 20px;
+}

@@ -1,0 +1,132 @@
+<% layout("layout/boilerplate")%>
+<style>
+  .container {
+    display: flex;
+  }
+
+  .user-info,
+  .listing-status,
+  .booking-status {
+    width: 300px;
+    background-color: rgba(133, 132, 132, 0.126);
+    margin-right: 20px;
+    border-radius: 10px;
+  }
+
+  .listing-status {
+    flex: 1;
+  }
+
+  .booking-status {
+    flex: 1;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .user-email {
+    margin: 0;
+    margin-left: -57%;
+  }
+
+  .user-phone {
+    margin: 0;
+    margin-left: -45%;
+  }
+
+  .user-p-value {
+    margin-left: -41%;
+  }
+
+  .user-country {
+    margin: 0;
+    margin-left: -49%;
+  }
+
+  .user-c-value {
+    margin-left: -56%;
+  }
+
+  .user-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #ddd;
+    margin-top: 20px;
+  }
+</style>
+<p class="mt-5 pt-4 h2 container">Welcome to your profile</p>
+<div class=" container pb-5">
+  <div class="user-info mt-3">
+    <div class="user-img d-flex align-items-center justify-content-center mt-4">
+      <img
+        src="<%="/chaitanya.png" || "/defaultUser.jpg" %>"  
+        alt="Profile Image"
+        class="img-fluid rounded-circle w-100 h-100 object-fit-cover"
+      />
+    </div>
+    <p class="userName h2 mt-3"><%= user.username %></p>
+    <p class="user-email mt-3 text-muted">email</p>
+    <p class="me-1"><u>patilchaitany529@gmail.com</u></p>
+    <p class="user-phone text-muted">Phone No:</p>
+    <p class="user-p-value"><u>7020561528</u></p>
+    <p class="user-country text-muted">Country:</p>
+    <p class="user-c-value"><u>India</u></p>
+  </div>
+  <div class="listing-status mt-3">
+    <p class="h2 text-center mt-2">Listing Details</p>
+    <% for(let listing of listings) { %> 
+    <div class="card mt-3 m-3 mb-5" style="max-width: 500px">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="<%= listing.images[0].url%>"
+            class="img-fluid w-100 h-100 object-fit-cover"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body p-0">
+            <h5 class="card-title ms-2 mt-2"><%= listing.title%></h5>
+            <p class="card-text ms-2 mb-3 position-absolute">City: <%= listing.location%><br>Country: <%= listing.country%>
+                <div class="edt-dlt position-relative" style="top: 55px; left: 134px;">
+                    <button class="btn btn-danger p-1">delete</button>
+                    <button class="btn btn-dark p-1">Edit</button>
+                </div>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% } %>
+  </div>
+  <div class="booking-status mt-3">
+    <p class="h2 text-center mt-2">Booking Details</p>
+     <% for(let cartItem of userCart) { %> 
+    <div class="card mt-3 m-3 mb-5" style="max-width: 500px">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="<%= cartItem.url%>"
+            class="img-fluid w-100 h-100 object-fit-cover"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body p-0">
+            <h5 class="card-title ms-2 mt-2"><%= cartItem.title%></h5>
+            <p class="card-text ms-2 mb-3 position-absolute">CheckIn: <%= cartItem.checkInDate%><br>CheckOut: <%= cartItem.checkOutDate%>
+                <div class="edt-dlt position-relative" style="top: 55px; left: 172px;">
+                    <button class="btn btn-danger p-1">cancel</button>
+                </div>
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+  <% } %>
+</div>

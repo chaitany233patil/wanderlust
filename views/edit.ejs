@@ -1,0 +1,131 @@
+<% layout('layout/boilerplate')%>
+  <style>
+    form {
+      margin-top: 70px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .add-btn {
+      background-color: rgb(231, 52, 85);
+      color: white;
+      transition: background-color 0.15s;
+    }
+
+    .add-btn:hover {
+      background-color: rgb(233, 72, 102);
+      color: white;
+    }
+
+  </style>
+  <body>  
+    <form class="needs-validation" method="POST" enctype="multipart/form-data" action="/listings/<%= listing.id %>?_method=PUT" novalidate>
+      <div class="row  container form-control mt-5 m-auto pb-4 pt-4">
+        <div class="col-auto">
+          <p class="title p-0">Update your listing here</p>
+        </div>
+          <div class="col-auto">
+          <input
+            class="form-control mt-3"
+            name="listing[title]"
+            type="text"
+            value="<%= listing.title%>"
+            required
+      />
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+      <div class="invalid-feedback">
+        Please enter title.
+      </div>
+        </div>
+        <div class="col-auto"><textarea class="form-control mt-3" name="listing[description" required><%=listing.description%></textarea
+          >
+          <div class="invalid-feedback">
+            Please enter description.
+          </div></div>
+          <div class="col-auto">
+            <input
+              class="form-control mt-3"
+              name="Imageurl[]"
+              placeholder="imageUrl"
+              type="file"
+              value="<%=listing.images[0].url%>"
+              />
+          </div>
+      
+      <div class="col-auto">
+          <input
+            class="form-control mt-3"
+            name="Imageurl[]"
+            placeholder="imageUrl1"
+            type="file"
+            value="<%=listing.images[1].url%>"
+            />
+      </div>
+      
+      <div class="col-auto">
+          <input
+            class="form-control mt-3"
+            name="Imageurl[]"
+            placeholder="imageUrl2"
+            type="file"
+            value="<%=listing.images[2].url%>"
+            />
+      </div>
+      
+      <div class="col-auto col-auto d-flex ">
+        <input
+          class="form-control mt-3 me-4 "
+          name="listing[price]"
+          value="<%= listing.price%>"
+          type="number"
+          required
+          />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please enter price.
+          </div>
+        <input
+        class="form-control mt-3"
+        name="listing[location]"
+        value="<%= listing.location %>"
+        type="text"
+        required
+        />
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          Please enter city.
+        </div>
+      </div>
+      
+      <div class="col-auto">
+        <input
+          class="form-control mt-3"
+          name="listing[country]"
+          value="<%= listing.country %>"
+          type="text"
+          required
+          />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please enter country.
+          </div>
+      </div>
+      
+      <div class="col-auto">
+        <button type="submit" class="btn col-2 add-btn mt-3">Save Listing</button> 
+      </div>
+    </div>
+    </form>
+  </body>
+</html>

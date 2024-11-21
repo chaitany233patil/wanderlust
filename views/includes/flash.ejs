@@ -1,0 +1,35 @@
+<style>
+  .alert {
+    position: absolute;
+  }
+</style>
+
+<% if(success && success.length) { %>
+<div
+  class="alert alert-success col-7 offset-3 alert-dismissible fade show"
+  role="alert"
+  style="margin-top: 60px; margin-bottom: 0; z-index: 200"
+>
+  <%= success %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<% } %> <% if(error && error.length) { %>
+<div
+  class="alert alert-danger col-7 offset-3 alert-dismissible fade show"
+  role="alert"
+  style="margin-top: 60px; margin-bottom: 0"
+>
+  <%= error %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<% } %>

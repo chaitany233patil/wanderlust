@@ -1,0 +1,66 @@
+<style>
+  header {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    border-bottom: 1px solid rgb(209, 209, 209);
+    height: 4rem;
+  }
+
+  .nav-brand {
+    margin: 0;
+    color: rgb(231, 52, 85);
+    font-size: 30px;
+  }
+
+  .brand {
+    margin-left: 25px;
+  }
+
+  header .login-signup {
+    margin-right: 25px;
+  }
+
+  header .login-signup a {
+    margin-left: 15px;
+    font-size: 20px;
+  }
+
+  a {
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .login-btn,
+  .signup-btn,
+  .logout-btn {
+    text-decoration: none;
+    color: black;
+  }
+</style>
+<header>
+  <div class="brand">
+    <a href="/listings"><h1 class="nav-brand">Wanderlust</h1></a>
+  </div>
+  <div class="login-signup">
+    <a href="/listings/new" class="login-btn"><u>Add new Listing</u></a>
+    <% if(!currUser) { %>
+    <a href="/login" class="login-btn">Login</a>
+    <a href="/signup" class="signup-btn">SignUp</a>
+    <% } %> <% if(currUser) { %>
+    <a href="/logout" class="logout-btn">LogOut</a>
+    <a href="/user/profile"
+      ><img
+        src="/person_24dp_UNDEFINED_FILL0_wght400_GRAD0_opsz24.png"
+        class="mb-1 text-center"
+        style="height: 30px"
+      />
+    </a>
+    <% } %>
+  </div>
+</header>

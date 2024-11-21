@@ -1,0 +1,41 @@
+<% layout('layout/boilerplate')%>
+    <style>
+      body {
+        background-color: #f3f4f6;
+      }
+      .card {
+        margin: 100px auto;
+        max-width: 400px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border: none;
+        border-radius: 10px;
+      }
+      .success-icon {
+        font-size: 50px;
+        color: #28a745;
+      }
+      .btn-custom {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card text-center">
+      <div class="mb-4">
+        <span class="success-icon">✔️</span>
+      </div>
+      <h2 class="mb-3">Payment Successful!</h2>
+      <p class="text-muted mb-4">
+        Your booking has been confirmed. Thank you for your payment.
+      </p>
+      <form method="get" action="/user/profile">
+        <button type="submit" class="btn btn-success btn-custom">
+          Go Back to your profile
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
