@@ -1,12 +1,14 @@
 {
-  "name": "sem-project-3",
+  "name": "wanderlust",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A full-stack property rental platform for travelers to discover and book unique accommodations worldwide",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["travel", "property", "rental", "booking", "airbnb", "accommodation"],
   "author": "Chaitanya Patil",
   "license": "ISC",
   "dependencies": {
