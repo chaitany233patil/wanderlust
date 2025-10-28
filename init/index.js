@@ -20,7 +20,7 @@ const initDb = async () => {
   await listing.deleteMany({});
   initdata.data = initdata.data.map((obj) => ({
     ...obj,
-    owner: "672dbb7b3122498e80d1f4dc",
+    owner: "6900f73de97aac9ca9accb83",
     images: obj.images.map((url) => ({
       url,
       filename: "listingImage",

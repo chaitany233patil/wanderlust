@@ -1,53 +1,36 @@
 <% layout("layout/boilerplate")%>
 <style>
-  .container {
+  /* Profile layout */
+  .profile-header {
+    margin-top: 2.5rem;
+    padding-top: 0.5rem;
+  }
+  .profile-container {
     display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding-bottom: 3rem;
   }
 
   .user-info,
   .listing-status,
   .booking-status {
-    width: 300px;
-    background-color: rgba(133, 132, 132, 0.126);
-    margin-right: 20px;
+    background-color: rgba(133, 132, 132, 0.08);
     border-radius: 10px;
+    padding: 16px;
   }
-
+  .user-info {
+    flex: 0 0 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .listing-status {
     flex: 1;
+    max-width: 560px;
   }
-
   .booking-status {
-    flex: 1;
-  }
-
-  .user-info {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .user-email {
-    margin: 0;
-    margin-left: -57%;
-  }
-
-  .user-phone {
-    margin: 0;
-    margin-left: -45%;
-  }
-
-  .user-p-value {
-    margin-left: -41%;
-  }
-
-  .user-country {
-    margin: 0;
-    margin-left: -49%;
-  }
-
-  .user-c-value {
-    margin-left: -56%;
+    flex: 0 0 260px;
   }
 
   .user-img {
@@ -56,77 +39,150 @@
     border-radius: 50%;
     overflow: hidden;
     background-color: #ddd;
-    margin-top: 20px;
+  }
+  .user-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .user-info p {
+    margin: 8px 0;
+    width: 100%;
+  }
+  .user-info .userName {
+    text-align: center;
+    word-break: break-word;
+  }
+
+  /* Cards */
+  .card {
+    margin: 1rem 0;
+  }
+  .card img {
+    object-fit: cover;
+    height: 100%;
+  }
+  .card-body {
+    padding: 0.5rem;
+  }
+
+  .edt-dlt {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .profile-container {
+      flex-direction: column;
+    }
+    .listing-status,
+    .booking-status,
+    .user-info {
+      width: 100%;
+    }
   }
 </style>
-<p class="mt-5 pt-4 h2 container">Welcome to your profile</p>
-<div class=" container pb-5">
-  <div class="user-info mt-3">
-    <div class="user-img d-flex align-items-center justify-content-center mt-4">
+
+<div class="container profile-header">
+  <h2 class="mt-2">Welcome to your profile</h2>
+</div>
+
+<div class="container profile-container">
+  <div class="user-info mt-2">
+    <div class="user-img d-flex align-items-center justify-content-center">
       <img
-        src="<%="/chaitanya.png" || "/defaultUser.jpg" %>"  
+        src="<%= user.image || '/defaultUser.jpg' %>"
         alt="Profile Image"
-        class="img-fluid rounded-circle w-100 h-100 object-fit-cover"
+        class="img-fluid rounded-circle"
       />
     </div>
-    <p class="userName h2 mt-3"><%= user.username %></p>
-    <p class="user-email mt-3 text-muted">email</p>
-    <p class="me-1"><u>patilchaitany529@gmail.com</u></p>
-    <p class="user-phone text-muted">Phone No:</p>
-    <p class="user-p-value"><u>7020561528</u></p>
-    <p class="user-country text-muted">Country:</p>
-    <p class="user-c-value"><u>India</u></p>
+    <p class="userName h4 mt-3"><%= user.username %></p>
+    <p class="mt-2 text-muted">Email</p>
+    <p class="me-1"><u><%= user.email || 'Not provided' %></u></p>
+    <p class="mt-2 text-muted">Phone No:</p>
+    <p><u><%= user.phone || 'Not provided' %></u></p>
+    <p class="mt-2 text-muted">Country:</p>
+    <p><u><%= user.country || 'Not provided' %></u></p>
   </div>
-  <div class="listing-status mt-3">
-    <p class="h2 text-center mt-2">Listing Details</p>
-    <% for(let listing of listings) { %> 
-    <div class="card mt-3 m-3 mb-5" style="max-width: 500px">
+
+  <div class="listing-status mt-2">
+    <h3 class="text-center">Listing Details</h3>
+    <% for(let listing of listings) { %>
+    <div class="card">
       <div class="row g-0">
-        <div class="col-md-4">
+        <div class="col-4">
           <img
-            src="<%= listing.images[0].url%>"
-            class="img-fluid w-100 h-100 object-fit-cover"
-            alt="..."
+            src="<%= listing.images && listing.images[0] ? listing.images[0].url : '/placeholder.jpg' %>"
+            class="img-fluid w-100 h-100"
+            alt="listing image"
           />
         </div>
-        <div class="col-md-8">
-          <div class="card-body p-0">
-            <h5 class="card-title ms-2 mt-2"><%= listing.title%></h5>
-            <p class="card-text ms-2 mb-3 position-absolute">City: <%= listing.location%><br>Country: <%= listing.country%>
-                <div class="edt-dlt position-relative" style="top: 55px; left: 134px;">
-                    <button class="btn btn-danger p-1">delete</button>
-                    <button class="btn btn-dark p-1">Edit</button>
-                </div>
+        <div class="col-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= listing.title %></h5>
+            <p class="card-text">
+              City: <%= listing.location %><br />Country: <%= listing.country %>
             </p>
+            <div class="edt-dlt">
+              <form
+                action="/listings/<%= listing._id %>?_method=DELETE"
+                method="POST"
+                class="d-inline"
+              >
+                <button class="btn btn-danger btn-sm" type="submit">
+                  Delete
+                </button>
+              </form>
+              <a
+                href="/listings/<%= listing._id %>/edit"
+                class="btn btn-dark btn-sm"
+                >Edit</a
+              >
+            </div>
           </div>
         </div>
       </div>
     </div>
     <% } %>
   </div>
-  <div class="booking-status mt-3">
-    <p class="h2 text-center mt-2">Booking Details</p>
-     <% for(let cartItem of userCart) { %> 
-    <div class="card mt-3 m-3 mb-5" style="max-width: 500px">
+
+  <div class="booking-status mt-2">
+    <h3 class="text-center">Booking Details</h3>
+    <% for(let cartItem of userCart) { %>
+    <div class="card">
       <div class="row g-0">
-        <div class="col-md-4">
+        <div class="col-4">
           <img
-            src="<%= cartItem.url%>"
-            class="img-fluid w-100 h-100 object-fit-cover"
-            alt="..."
+            src="<%= cartItem.url || '/placeholder.jpg' %>"
+            class="img-fluid w-100 h-100"
+            alt="booking image"
           />
         </div>
-        <div class="col-md-8">
-          <div class="card-body p-0">
-            <h5 class="card-title ms-2 mt-2"><%= cartItem.title%></h5>
-            <p class="card-text ms-2 mb-3 position-absolute">CheckIn: <%= cartItem.checkInDate%><br>CheckOut: <%= cartItem.checkOutDate%>
-                <div class="edt-dlt position-relative" style="top: 55px; left: 172px;">
-                    <button class="btn btn-danger p-1">cancel</button>
-                </div>
+        <div class="col-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= cartItem.title %></h5>
+            <p class="card-text">
+              CheckIn: <%= cartItem.checkInDate %><br />CheckOut: <%=
+              cartItem.checkOutDate %>
             </p>
+            <div class="edt-dlt">
+              <form
+                action="/cart/<%= cartItem._id %>?_method=DELETE"
+                method="POST"
+                class="d-inline"
+              >
+                <button class="btn btn-danger btn-sm" type="submit">
+                  Cancel
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <% } %>
   </div>
-  <% } %>
 </div>
